@@ -25,7 +25,7 @@ async function fetchItem(hnStoryItemId) {
 
 async function renderItem(rootDiv, item, index) {
     const data = await Promise.all(item.kids.map((item) => fetchItemRequest(item).then(response => response.json())))
-    
+
     data.forEach((comment) => {
         renderComment(comment, rootDiv, index);
     });
