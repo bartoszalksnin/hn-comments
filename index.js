@@ -1,6 +1,10 @@
 async function init() {
     const hnStoryItemId = 8863;
-    const rootDiv = document.getElementById('hn-comments');
+    const hnCommentsElement = document.getElementsByTagName('hn-comments')[0];
+    const rootElement = document.createElement('div');
+    hnCommentsElement.appendChild(rootElement);
+
+    rootElement.setAttribute('style', 'line-height:1.6; display: block; max-width:800px; text-align: centre;margin:0 auto')
 
     const titleDiv = document.createElement('div');
     titleDiv.innerHTML = `Comments as seen on <a href="https://news.ycombinator.com/item?id=${hnStoryItemId}" target="_blank">hacker news</a>`
@@ -9,12 +13,12 @@ async function init() {
     const loadingDiv = document.createElement('div');
     loadingDiv.innerHTML = `Loading ...`
 
-    rootDiv.appendChild(titleDiv);
-    rootDiv.appendChild(loadingDiv);
+    rootElement.appendChild(titleDiv);
+    rootElement.appendChild(loadingDiv);
 
     const item = await fetchItem(hnStoryItemId);
-    await renderItem(rootDiv, item, 0);
     loadingDiv.remove();
+    await renderItem(rootElement, item, 0);
 }
 
 async function fetchItem(hnStoryItemId) {
@@ -24,8 +28,13 @@ async function fetchItem(hnStoryItemId) {
 }
 
 async function renderItem(rootDiv, item, index) {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.innerHTML = `Loading ...`
+    rootDiv.appendChild(loadingDiv);
+
     const data = await Promise.all(item.kids.map((item) => fetchItemRequest(item).then(response => response.json())))
 
+    loadingDiv.remove();
     data.forEach((comment) => {
         renderComment(comment, rootDiv, index);
     });
