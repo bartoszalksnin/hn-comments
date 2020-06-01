@@ -1,0 +1,24 @@
+{
+  "name": "hn-comments",
+  "version": "0.0.1",
+  "description": "HN as a comment section",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartoszalksnin/hn-comments.git"
+  },
+  "keywords": [
+    "hn",
+    "comments"
+  ],
+  "author": "Bartosz Alksnin",
+  "license": "SEE LICENSE",
+  "bugs": {
+    "url": "https://github.com/bartoszalksnin/hn-comments/issues"
+  },
+  "homepage": "https://github.com/bartoszalksnin/hn-comments#readme",
+  "dependencies": {}
+}
